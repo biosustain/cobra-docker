@@ -5,7 +5,7 @@ RUN pip install pip --upgrade
 # RUN pip install paver
 # RUN git clone https://github.com/aarongarrett/inspyred.git && cd inspyred && paver sdist && python setup.py install
 RUN pip install inspyred -f http://nikosonnensche.in/wheels/index.html --no-index --trusted-host nikosonnensche.in
-# RUN pip install python-libsbml
+RUN pip install python-libsbml-experimental -f http://nikosonnensche.in/wheels/index.html --no-index --trusted-host nikosonnensche.in
 RUN pip install escher
 RUN pip install -e git+https://github.com/coagulant/progressbar-python3.git#egg=progressbar
 RUN pip install cameo
