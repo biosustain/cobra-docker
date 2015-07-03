@@ -9,4 +9,7 @@ RUN pip install python-libsbml-experimental -f http://nikosonnensche.in/wheels/i
 RUN pip install escher
 RUN pip install -e git+https://github.com/coagulant/progressbar-python3.git#egg=progressbar
 RUN pip install cameo
+RUN rm *.ipynb 
+RUN rm -rd datasets src featured communities
+ADD notebooks/ /home/jovyan/
 CMD ipython notebook
