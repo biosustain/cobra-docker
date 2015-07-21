@@ -12,6 +12,6 @@ RUN pip --version
 RUN pip install git+https://github.com/biosustain/cameo.git@devel#egg=cameo
 # RUN git clone https://github.com/biosustain/cameo.git && cd cameo && pip install .  
 RUN rm *.ipynb 
-RUN rm -rd datasets src featured communities
+RUN rm -rd datasets featured communities
 ADD notebooks/ /home/jovyan/
 CMD ipython notebook
