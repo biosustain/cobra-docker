@@ -6,10 +6,10 @@ RUN export LANG=C.UTF-8
 RUN pip install pip --upgrade
 RUN pip install inspyred -f http://nikosonnensche.in/wheels/index.html --no-index --trusted-host nikosonnensche.in
 RUN pip install python-libsbml-experimental -f http://nikosonnensche.in/wheels/index.html --no-index --trusted-host nikosonnensche.in
-RUN pip install -e git+https://github.com/aebrahim/IProgress.git#egg=IProgress
+RUN pip install git+https://github.com/aebrahim/IProgress.git#egg=IProgress
 RUN pip --version
 # RUN pip install cameo
-RUN pip install -e git+https://github.com/biosustain/cameo.git@devel#egg=cameo
+RUN pip install git+https://github.com/biosustain/cameo.git@devel#egg=cameo
 # RUN git clone https://github.com/biosustain/cameo.git && cd cameo && pip install .  
 RUN rm *.ipynb 
 RUN rm -rd datasets src featured communities
