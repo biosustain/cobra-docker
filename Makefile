@@ -3,6 +3,11 @@ pull:
 	-docker pull jupyter/configurable-http-proxy
 	-docker pull jupyter/tmpnb
 
+start:
+	-sh run_cobranb.sh
+
+restart: nuke start
+
 reroute:
 	-iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to 8000
 
