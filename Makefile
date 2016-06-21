@@ -1,13 +1,10 @@
-images: cobranb 
-
-cobranb:
-	docker build -t biosustain/cobranb . 
-
-upload: images
-	docker push biosustain/cobranb
+pull:
+	-docker pull biosustain/cobra-notebook
+	-docker pull jupyter/configurable-http-proxy
+	-docker pull jupyter/tmpnb
 
 super-nuke: nuke
-	-docker rmi biosustain/cobranb
+	-docker rmi biosustain/cobra-notebook
 
 # Cleanup with fangs
 nuke:
