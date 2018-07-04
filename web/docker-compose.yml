@@ -1,0 +1,32 @@
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - "80:80"
+      - "443:443"
+    network_mode: "host"
+    volumes:
+      - ./certs:/certs
+  httpproxy:
+    image: jupyterhub/configurable-http-proxy:latest
+    environment:
+      - CONFIGPROXY_AUTH_TOKEN=cf45c560c77803dfd7963db2df102c35593bd2892efa734fa6e1b44a13f0
+    network_mode: "host"
+    ports:
+      - 8000:8000
+    command: --default-target http://127.0.0.1:9999
+
+  tmpnb-orchestrate:
+    image: jupyter/tmpnb:latest
+    depends_on:
+      - httpproxy
+    network_mode: "host"
+    ports:
+      - "9999:9999"
+    volumes:
+      - /var/run/docker.sock:/docker.sock
+    environment:
+      - CONFIGPROXY_AUTH_TOKEN=cf45c560c77803dfd7963db2df102c35593bd2892efa734fa6e1b44a13f0
+    command: python orchestrate.py --image="dddecaf/cobra-notebook:ea01783d7808" --command='jupyter notebook --no-browser --port {port} --ip=0.0.0.0 --NotebookApp.base_url={base_path} --NotebookApp.port_retries=0 --NotebookApp.token="" --NotebookApp.disable_check_xsrf=True'
+
